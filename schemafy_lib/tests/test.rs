@@ -1,4 +1,4 @@
-use schemafy_lib::Expander;
+use polywrap_schemafy_lib::Expander;
 
 #[test]
 fn schema() {
@@ -13,7 +13,7 @@ fn schema() {
 #[test]
 fn test_str_to_ident() {
     use proc_macro2::Span;
-    use schemafy_lib::str_to_ident;
+    use polywrap_schemafy_lib::str_to_ident;
     use syn::Ident;
 
     assert_eq!(

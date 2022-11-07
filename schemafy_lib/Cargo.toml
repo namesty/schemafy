@@ -1,7 +1,7 @@
 [package]
-name = "schemafy_lib"
-version = "0.6.0" # VERSION_TAG
-authors = ["Markus Westerlind <marwes91@gmail.com>", "MATILLAT Quentin <qmatillat@gmail.com>"]
+name = "polywrap_schemafy_lib"
+version = "0.1.0" # VERSION_TAG
+authors = ["Markus Westerlind <marwes91@gmail.com>", "MATILLAT Quentin <qmatillat@gmail.com>", "Nestor Amesty <nestor@polywrap.io>"]
 edition = "2018"
 
 description = "Generates serializable Rust types from a json schema"

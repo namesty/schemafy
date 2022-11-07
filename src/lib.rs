@@ -77,7 +77,7 @@ pub fn schemafy(tokens: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let def = syn::parse_macro_input!(tokens as Def);
     let root_name = def.root;
     let input_file = def.input_file.value();
-    schemafy_lib::Generator::builder()
+    polywrap_schemafy_lib::Generator::builder()
         .with_root_name(root_name)
         .with_input_file(&input_file)
         .build()
