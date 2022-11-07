@@ -1,7 +1,8 @@
+use polywrap_schemafy::schemafy;
 use serde_derive::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
-schemafy::schemafy!(
+schemafy!(
     root: Schema
     "schemafy_lib/src/schema.json"
 );
@@ -20,7 +21,7 @@ fn test() {
     types_exists(None);
 }
 
-schemafy::schemafy!("tests/debugserver-schema.json");
+schemafy!("tests/debugserver-schema.json");
 
 #[test]
 fn debugserver_types() {
@@ -30,16 +31,16 @@ fn debugserver_types() {
     }
 }
 
-schemafy::schemafy!("tests/nested.json");
+schemafy!("tests/nested.json");
 
 #[test]
 fn nested() {
     let _: Option<Defnested> = None;
 }
 
-schemafy::schemafy!("tests/vega/vega.json");
+schemafy!("tests/vega/vega.json");
 
-schemafy::schemafy!(
+schemafy!(
     root: OptionType
     "tests/option-type.json"
 );
@@ -69,7 +70,7 @@ fn option_type() {
     );
 }
 
-schemafy::schemafy!(
+schemafy!(
     root: ArrayType
     "tests/array-type.json"
 );
@@ -93,7 +94,7 @@ fn array_type() {
     );
 }
 
-schemafy::schemafy!(
+schemafy!(
     root: EmptyStruct
     "tests/empty-struct.json"
 );
@@ -103,7 +104,7 @@ fn empty_struct() {
     let EmptyStruct {} = EmptyStruct {};
 }
 
-schemafy::schemafy!(
+schemafy!(
     root: AnyProperties
     "tests/any-properties.json"
 );
@@ -113,7 +114,7 @@ fn any_properties() {
     let _: ::std::collections::BTreeMap<String, serde_json::Value> = AnyProperties::default();
 }
 
-schemafy::schemafy!(
+schemafy!(
     root: RootArray
     "tests/root-array.json"
 );
@@ -124,7 +125,7 @@ fn root_array() {
     let _: Option<&RootArrayItem> = a.get(0);
 }
 
-schemafy::schemafy!(
+schemafy!(
     root: EnumNamesInt
     "tests/enum-names-int.json"
 );
@@ -135,7 +136,7 @@ fn enum_names_int() {
     assert_eq!(serde_json::to_string(&EnumNamesInt::B).unwrap(), "2");
 }
 
-schemafy::schemafy!(
+schemafy!(
     root: EnumNamesStr
     "tests/enum-names-str.json"
 );
@@ -146,7 +147,7 @@ fn enum_names_str() {
     assert_eq!(serde_json::to_string(&EnumNamesStr::B).unwrap(), "\"2\"");
 }
 
-schemafy::schemafy!(
+schemafy!(
     root: RecursiveTypes
     "tests/recursive_types.json"
 );
@@ -154,9 +155,17 @@ schemafy::schemafy!(
 #[allow(dead_code)]
 fn recursive_types_exist(_: RecursiveTypes) {}
 
-schemafy::schemafy!(
+schemafy!(
     root: OneOfSchema
     "tests/one-of-types.json"
+);
+
+#[allow(dead_code)]
+fn infinite_types(_: InfiniteTypes) {}
+
+schemafy!(
+    root: InfiniteTypes
+    "tests/infinite.json"
 );
 
 #[test]
@@ -179,7 +188,7 @@ fn one_of_parsing() {
     assert!(serde_json::from_str::<OneOfSchema>(r#"{"foo":3}"#).is_err());
 }
 
-schemafy::schemafy!(
+schemafy!(
     root: PatternProperties
     "tests/pattern-properties.json"
 );
