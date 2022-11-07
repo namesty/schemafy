@@ -375,7 +375,9 @@ impl<'r> Expander<'r> {
 
         let ref_ = ref_.to_pascal_case();
         let ref_ = replace_invalid_identifier_chars(&ref_);
-        replace_numeric_start(&ref_)
+        let ref_ = replace_numeric_start(&ref_);
+
+        format!("Box<{}>", ref_)
     }
 
     fn schema(&self, schema: &'r Schema) -> Cow<'r, Schema> {
